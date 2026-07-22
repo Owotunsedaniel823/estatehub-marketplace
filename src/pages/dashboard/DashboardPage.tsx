@@ -4,6 +4,7 @@ import {
   Car,
   ClipboardList,
   Megaphone,
+  CalendarDays,
 } from "lucide-react";
 
 import DashboardLayout from "../../components/layout/DashboardLayout";
@@ -20,19 +21,19 @@ export default function DashboardPage() {
       title: "Active Listings",
       value: "89",
       icon: Store,
-      description: "+5 new today",
+      description: "+5 new listings",
     },
     {
       title: "Visitors Today",
       value: "14",
       icon: Car,
-      description: "6 checked in",
+      description: "3 currently inside",
     },
     {
       title: "Open Requests",
       value: "23",
       icon: ClipboardList,
-      description: "Pending review",
+      description: "8 pending review",
     },
   ];
 
@@ -52,7 +53,7 @@ export default function DashboardPage() {
         </div>
 
 
-        {/* Statistics Cards */}
+        {/* Stats */}
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
 
           {stats.map((item) => {
@@ -61,7 +62,7 @@ export default function DashboardPage() {
             return (
               <div
                 key={item.title}
-                className="rounded-2xl bg-white p-6 shadow-sm transition hover:shadow-lg"
+                className="rounded-2xl bg-white p-6 shadow-sm transition hover:shadow-md"
               >
                 <div className="flex items-center justify-between">
 
@@ -79,7 +80,6 @@ export default function DashboardPage() {
                     </p>
                   </div>
 
-
                   <div className="rounded-xl bg-blue-100 p-4 text-blue-600">
                     <Icon size={28} />
                   </div>
@@ -92,7 +92,7 @@ export default function DashboardPage() {
         </div>
 
 
-        {/* Lower Section */}
+        {/* Bottom Sections */}
         <div className="grid gap-6 lg:grid-cols-2">
 
 
@@ -112,11 +112,11 @@ export default function DashboardPage() {
 
               <div className="rounded-xl bg-slate-50 p-4">
                 <h3 className="font-semibold">
-                  Estate Maintenance Notice
+                  Estate Security Update
                 </h3>
 
                 <p className="mt-1 text-sm text-slate-500">
-                  Water maintenance scheduled for Saturday.
+                  New visitor verification rules are now active.
                 </p>
               </div>
 
@@ -127,7 +127,7 @@ export default function DashboardPage() {
                 </h3>
 
                 <p className="mt-1 text-sm text-slate-500">
-                  Meeting holds at the estate hall.
+                  Meeting scheduled for Saturday 5PM.
                 </p>
               </div>
 
@@ -140,69 +140,59 @@ export default function DashboardPage() {
           {/* Visitors */}
           <div className="rounded-2xl bg-white p-6 shadow-sm">
 
-            <h2 className="mb-5 text-xl font-bold">
-              Upcoming Visitors
-            </h2>
+            <div className="mb-5 flex items-center gap-3">
+              <CalendarDays className="text-blue-600" />
+
+              <h2 className="text-xl font-bold">
+                Upcoming Visitors
+              </h2>
+            </div>
 
 
             <div className="space-y-4">
 
-              <div className="flex justify-between rounded-xl bg-slate-50 p-4">
+              <div className="flex items-center justify-between rounded-xl bg-slate-50 p-4">
+
                 <div>
-                  <p className="font-semibold">
+                  <h3 className="font-semibold">
                     John Smith
-                  </p>
+                  </h3>
 
                   <p className="text-sm text-slate-500">
-                    Tomorrow, 2:00 PM
+                    Tomorrow • 10:00 AM
                   </p>
                 </div>
 
                 <span className="rounded-full bg-green-100 px-3 py-1 text-sm text-green-700">
                   Approved
                 </span>
+
               </div>
 
 
-              <div className="flex justify-between rounded-xl bg-slate-50 p-4">
+              <div className="flex items-center justify-between rounded-xl bg-slate-50 p-4">
+
                 <div>
-                  <p className="font-semibold">
+                  <h3 className="font-semibold">
                     Sarah Williams
-                  </p>
+                  </h3>
 
                   <p className="text-sm text-slate-500">
-                    Friday, 10:00 AM
+                    Today • 3:00 PM
                   </p>
                 </div>
 
                 <span className="rounded-full bg-yellow-100 px-3 py-1 text-sm text-yellow-700">
                   Pending
                 </span>
-              </div>
 
+              </div>
 
             </div>
 
           </div>
 
-
         </div>
-
-
-
-        {/* Chart Placeholder */}
-        <div className="rounded-2xl bg-white p-6 shadow-sm">
-
-          <h2 className="mb-4 text-xl font-bold">
-            Estate Activity Overview
-          </h2>
-
-          <div className="flex h-64 items-center justify-center rounded-xl bg-slate-100 text-slate-400">
-            Chart Component Coming Soon 📈
-          </div>
-
-        </div>
-
 
       </div>
     </DashboardLayout>
