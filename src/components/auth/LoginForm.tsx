@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -34,11 +35,7 @@ export default function LoginForm() {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      autoComplete="off"
-      className="space-y-5"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
       <div>
         <label className="mb-2 block text-sm font-medium text-gray-700">
           Email Address
@@ -46,10 +43,9 @@ export default function LoginForm() {
 
         <input
           type="email"
-          autoComplete="off"
           placeholder="Enter your email"
           {...register("email")}
-          className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+          className="w-full rounded-lg border border-gray-300 px-4 py-3"
         />
 
         {errors.email && (
@@ -66,10 +62,9 @@ export default function LoginForm() {
 
         <input
           type="password"
-          autoComplete="new-password"
           placeholder="Enter your password"
           {...register("password")}
-          className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+          className="w-full rounded-lg border border-gray-300 px-4 py-3"
         />
 
         {errors.password && (
@@ -85,18 +80,18 @@ export default function LoginForm() {
           Remember me
         </label>
 
-        <button
-          type="button"
+        <Link
+          to="/forgot-password"
           className="font-medium text-blue-600 hover:underline"
         >
           Forgot password?
-        </button>
+        </Link>
       </div>
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700 disabled:opacity-50"
+        className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white hover:bg-blue-700 disabled:opacity-50"
       >
         {isSubmitting ? "Signing In..." : "Sign In"}
       </button>

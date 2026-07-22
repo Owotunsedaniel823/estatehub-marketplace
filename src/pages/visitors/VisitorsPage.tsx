@@ -1,15 +1,9 @@
-import MainLayout from "../../layouts/MainLayout";
-
 export default function VisitorsPage() {
   return (
-    <MainLayout>
-      <h1 className="text-3xl font-bold">
-        Visitor Management
+    <div className="flex min-h-screen items-center justify-center bg-slate-100">
+      <h1 className="text-4xl font-bold text-blue-600">
+        Visitors Page
       </h1>
-
-      <p className="mt-4 text-gray-600">
-        Manage visitors and visitor requests here.
-      </p>
-    </MainLayout>
+    </div>
   );
 }
