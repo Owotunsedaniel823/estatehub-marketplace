@@ -1,133 +1,112 @@
-import {
-  Users,
-  Store,
-  Car,
-  ClipboardList,
-  Megaphone,
-  CalendarDays,
-} from "lucide-react";
-
 import DashboardLayout from "../../components/layout/DashboardLayout";
 
 export default function DashboardPage() {
-  const stats = [
-    {
-      title: "Total Residents",
-      value: "1,245",
-      icon: Users,
-      description: "+12% this month",
-    },
-    {
-      title: "Active Listings",
-      value: "89",
-      icon: Store,
-      description: "+5 new listings",
-    },
-    {
-      title: "Visitors Today",
-      value: "14",
-      icon: Car,
-      description: "3 currently inside",
-    },
-    {
-      title: "Open Requests",
-      value: "23",
-      icon: ClipboardList,
-      description: "8 pending review",
-    },
-  ];
-
   return (
     <DashboardLayout>
-      <div className="space-y-8">
+      <div>
+        <h1 className="mb-2 text-3xl font-bold text-gray-800">
+          Welcome to EstateHub 👋
+        </h1>
 
-        {/* Welcome */}
-        <div>
-          <h1 className="text-3xl font-bold text-slate-800">
-            Welcome back, Daniel 👋
-          </h1>
+        <p className="mb-8 text-gray-500">
+          Manage your estate activities from one place.
+        </p>
 
-          <p className="mt-2 text-slate-500">
-            Here's what's happening in your estate today.
-          </p>
-        </div>
-
-
-        {/* Stats */}
+        {/* Statistics Cards */}
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
 
-          {stats.map((item) => {
-            const Icon = item.icon;
+          <div className="rounded-2xl bg-white p-6 shadow">
+            <p className="text-gray-500">
+              Total Residents
+            </p>
 
-            return (
-              <div
-                key={item.title}
-                className="rounded-2xl bg-white p-6 shadow-sm transition hover:shadow-md"
-              >
-                <div className="flex items-center justify-between">
+            <h2 className="mt-3 text-4xl font-bold">
+              1,245
+            </h2>
 
-                  <div>
-                    <p className="text-sm text-slate-500">
-                      {item.title}
-                    </p>
+            <p className="mt-2 text-sm text-green-600">
+              +12% this month
+            </p>
+          </div>
 
-                    <h2 className="mt-3 text-4xl font-bold text-slate-800">
-                      {item.value}
-                    </h2>
 
-                    <p className="mt-2 text-sm text-green-600">
-                      {item.description}
-                    </p>
-                  </div>
+          <div className="rounded-2xl bg-white p-6 shadow">
+            <p className="text-gray-500">
+              Active Listings
+            </p>
 
-                  <div className="rounded-xl bg-blue-100 p-4 text-blue-600">
-                    <Icon size={28} />
-                  </div>
+            <h2 className="mt-3 text-4xl font-bold">
+              89
+            </h2>
 
-                </div>
-              </div>
-            );
-          })}
+            <p className="mt-2 text-sm text-green-600">
+              Marketplace
+            </p>
+          </div>
+
+
+          <div className="rounded-2xl bg-white p-6 shadow">
+            <p className="text-gray-500">
+              Open Requests
+            </p>
+
+            <h2 className="mt-3 text-4xl font-bold">
+              23
+            </h2>
+
+            <p className="mt-2 text-sm text-orange-600">
+              Need attention
+            </p>
+          </div>
+
+
+          <div className="rounded-2xl bg-white p-6 shadow">
+            <p className="text-gray-500">
+              Visitors Today
+            </p>
+
+            <h2 className="mt-3 text-4xl font-bold">
+              14
+            </h2>
+
+            <p className="mt-2 text-sm text-blue-600">
+              Security tracking
+            </p>
+          </div>
 
         </div>
 
 
-        {/* Bottom Sections */}
-        <div className="grid gap-6 lg:grid-cols-2">
-
+        {/* Lower Sections */}
+        <div className="mt-8 grid gap-6 lg:grid-cols-2">
 
           {/* Announcements */}
-          <div className="rounded-2xl bg-white p-6 shadow-sm">
+          <div className="rounded-2xl bg-white p-6 shadow">
 
-            <div className="mb-5 flex items-center gap-3">
-              <Megaphone className="text-blue-600" />
-
-              <h2 className="text-xl font-bold">
-                Recent Announcements
-              </h2>
-            </div>
-
+            <h2 className="mb-4 text-xl font-bold">
+              Recent Announcements
+            </h2>
 
             <div className="space-y-4">
 
-              <div className="rounded-xl bg-slate-50 p-4">
+              <div className="rounded-lg bg-gray-50 p-4">
                 <h3 className="font-semibold">
                   Estate Security Update
                 </h3>
 
-                <p className="mt-1 text-sm text-slate-500">
-                  New visitor verification rules are now active.
+                <p className="text-sm text-gray-500">
+                  New visitor rules have been added.
                 </p>
               </div>
 
 
-              <div className="rounded-xl bg-slate-50 p-4">
+              <div className="rounded-lg bg-gray-50 p-4">
                 <h3 className="font-semibold">
                   Community Meeting
                 </h3>
 
-                <p className="mt-1 text-sm text-slate-500">
-                  Meeting scheduled for Saturday 5PM.
+                <p className="text-sm text-gray-500">
+                  Meeting scheduled for Saturday.
                 </p>
               </div>
 
@@ -136,58 +115,17 @@ export default function DashboardPage() {
           </div>
 
 
+          {/* Chart Placeholder */}
+          <div className="rounded-2xl bg-white p-6 shadow">
 
-          {/* Visitors */}
-          <div className="rounded-2xl bg-white p-6 shadow-sm">
+            <h2 className="mb-4 text-xl font-bold">
+              Activity Overview
+            </h2>
 
-            <div className="mb-5 flex items-center gap-3">
-              <CalendarDays className="text-blue-600" />
-
-              <h2 className="text-xl font-bold">
-                Upcoming Visitors
-              </h2>
-            </div>
-
-
-            <div className="space-y-4">
-
-              <div className="flex items-center justify-between rounded-xl bg-slate-50 p-4">
-
-                <div>
-                  <h3 className="font-semibold">
-                    John Smith
-                  </h3>
-
-                  <p className="text-sm text-slate-500">
-                    Tomorrow • 10:00 AM
-                  </p>
-                </div>
-
-                <span className="rounded-full bg-green-100 px-3 py-1 text-sm text-green-700">
-                  Approved
-                </span>
-
-              </div>
-
-
-              <div className="flex items-center justify-between rounded-xl bg-slate-50 p-4">
-
-                <div>
-                  <h3 className="font-semibold">
-                    Sarah Williams
-                  </h3>
-
-                  <p className="text-sm text-slate-500">
-                    Today • 3:00 PM
-                  </p>
-                </div>
-
-                <span className="rounded-full bg-yellow-100 px-3 py-1 text-sm text-yellow-700">
-                  Pending
-                </span>
-
-              </div>
-
+            <div className="flex h-56 items-center justify-center rounded-xl bg-gray-100">
+              <p className="text-gray-400">
+                Chart Placeholder
+              </p>
             </div>
 
           </div>
