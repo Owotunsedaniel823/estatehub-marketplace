@@ -1,35 +1,258 @@
-export default function ForgotPasswordPage() {
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+
+export default function ChangePasswordPage() {
+
+
+  const navigate = useNavigate();
+
+
+  const [currentPassword, setCurrentPassword] = useState("");
+
+  const [newPassword, setNewPassword] = useState("");
+
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [message, setMessage] = useState("");
+
+
+
+
+
+
+  const handleChangePassword = (e: React.FormEvent) => {
+
+    e.preventDefault();
+
+
+
+    if (!currentPassword || !newPassword || !confirmPassword) {
+
+      setMessage("Please fill all fields");
+
+      return;
+
+    }
+
+
+
+
+    if (newPassword !== confirmPassword) {
+
+      setMessage("New passwords do not match");
+
+      return;
+
+    }
+
+
+
+
+    if (currentPassword !== "Danzy1234") {
+
+      setMessage("Current password is incorrect");
+
+      return;
+
+    }
+
+
+
+
+    setMessage("Password changed successfully");
+
+
+
+    setTimeout(()=>{
+
+      navigate("/profile");
+
+    },1500);
+
+
+
+  };
+
+
+
+
+
+
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-100 px-4">
-      <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl">
-        <h1 className="mb-2 text-center text-3xl font-bold text-blue-600">
-          Forgot Password
+
+    <div className="
+    min-h-screen
+    flex
+    items-center
+    justify-center
+    bg-gray-100
+    ">
+
+
+      <div className="
+      bg-white
+      rounded-xl
+      shadow-lg
+      p-8
+      w-full
+      max-w-md
+      ">
+
+
+        <h1 className="
+        text-3xl
+        font-bold
+        text-blue-600
+        text-center
+        ">
+
+          Change Password
+
         </h1>
 
-        <p className="mb-6 text-center text-gray-500">
-          Enter your email address and we'll send you a password reset link.
+
+
+        <p className="
+        text-center
+        text-gray-500
+        mt-2
+        ">
+
+          Update your account password
+
         </p>
 
-        <form className="space-y-5">
-          <div>
-            <label className="mb-2 block text-sm font-medium">
-              Email Address
-            </label>
 
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="w-full rounded-lg border border-gray-300 px-4 py-3"
-            />
+
+
+
+
+        {message && (
+
+          <div className="
+          mt-5
+          bg-blue-100
+          text-blue-600
+          p-3
+          rounded-lg
+          ">
+
+            {message}
+
           </div>
 
+        )}
+
+
+
+
+
+
+
+
+        <form
+
+          onSubmit={handleChangePassword}
+
+          className="mt-6 space-y-4"
+
+        >
+
+
+
+
+          <input
+
+            type="password"
+
+            placeholder="Current Password"
+
+            value={currentPassword}
+
+            onChange={(e)=>setCurrentPassword(e.target.value)}
+
+            className="w-full border rounded-lg p-3"
+
+          />
+
+
+
+
+
+
+          <input
+
+            type="password"
+
+            placeholder="New Password"
+
+            value={newPassword}
+
+            onChange={(e)=>setNewPassword(e.target.value)}
+
+            className="w-full border rounded-lg p-3"
+
+          />
+
+
+
+
+
+
+
+          <input
+
+            type="password"
+
+            placeholder="Confirm New Password"
+
+            value={confirmPassword}
+
+            onChange={(e)=>setConfirmPassword(e.target.value)}
+
+            className="w-full border rounded-lg p-3"
+
+          />
+
+
+
+
+
+
+
           <button
-            className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white hover:bg-blue-700"
+
+            className="
+            w-full
+            bg-blue-600
+            text-white
+            py-3
+            rounded-lg
+            font-semibold
+            "
+
           >
-            Send Reset Link
+
+            Update Password
+
           </button>
+
+
+
+
+
         </form>
+
+
+
       </div>
+
+
+
     </div>
+
   );
+
 }

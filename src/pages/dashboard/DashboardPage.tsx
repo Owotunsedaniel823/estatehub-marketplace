@@ -1,138 +1,400 @@
-import DashboardLayout from "../../components/layout/DashboardLayout";
+import { useEffect, useState } from "react";
+
+import {
+  Users,
+  Store,
+  Car,
+  Wrench,
+} from "lucide-react";
+
+
 
 export default function DashboardPage() {
+
+
+
+  const [stats,setStats] = useState({
+
+    residents:0,
+
+    listings:0,
+
+    visitors:0,
+
+    requests:0,
+
+  });
+
+
+
+
+
+  const [activities,setActivities] = useState<string[]>([]);
+
+
+
+
+
+
+  useEffect(()=>{
+
+
+    const residents = JSON.parse(
+
+      localStorage.getItem("residents") || "[]"
+
+    );
+
+
+    const listings = JSON.parse(
+
+      localStorage.getItem("listings") || "[]"
+
+    );
+
+
+    const visitors = JSON.parse(
+
+      localStorage.getItem("visitors") || "[]"
+
+    );
+
+
+    const requests = JSON.parse(
+
+      localStorage.getItem("requests") || "[]"
+
+    );
+
+
+
+
+    setStats({
+
+      residents: residents.length,
+
+      listings: listings.length + 3,
+
+      visitors: visitors.length,
+
+      requests: requests.length,
+
+    });
+
+
+
+
+
+
+    setActivities([
+
+      "🛠 New maintenance request submitted",
+
+      "📢 New announcement posted",
+
+      "🚗 Visitor checked in today",
+
+    ]);
+
+
+
+  },[]);
+
+
+
+
+
+
+
+  const cards = [
+
+    {
+
+      title:"Total Residents",
+
+      value:stats.residents,
+
+      icon:Users,
+
+    },
+
+
+    {
+
+      title:"Active Listings",
+
+      value:stats.listings,
+
+      icon:Store,
+
+    },
+
+
+    {
+
+      title:"Visitors Today",
+
+      value:stats.visitors,
+
+      icon:Car,
+
+    },
+
+
+    {
+
+      title:"Open Requests",
+
+      value:stats.requests,
+
+      icon:Wrench,
+
+    },
+
+
+  ];
+
+
+
+
+
+
   return (
-    <DashboardLayout>
+
+    <div className="space-y-8">
+
+
+
       <div>
-        <h1 className="mb-2 text-3xl font-bold text-gray-800">
-          Welcome to EstateHub 👋
+
+
+        <h1 className="text-3xl font-bold text-gray-800">
+
+          Welcome back, Daniel 👋
+
         </h1>
 
-        <p className="mb-8 text-gray-500">
-          Manage your estate activities from one place.
+
+
+        <p className="text-gray-500 mt-2">
+
+          Here is what is happening in your estate today.
+
         </p>
 
-        {/* Statistics Cards */}
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-
-          <div className="rounded-2xl bg-white p-6 shadow">
-            <p className="text-gray-500">
-              Total Residents
-            </p>
-
-            <h2 className="mt-3 text-4xl font-bold">
-              1,245
-            </h2>
-
-            <p className="mt-2 text-sm text-green-600">
-              +12% this month
-            </p>
-          </div>
-
-
-          <div className="rounded-2xl bg-white p-6 shadow">
-            <p className="text-gray-500">
-              Active Listings
-            </p>
-
-            <h2 className="mt-3 text-4xl font-bold">
-              89
-            </h2>
-
-            <p className="mt-2 text-sm text-green-600">
-              Marketplace
-            </p>
-          </div>
-
-
-          <div className="rounded-2xl bg-white p-6 shadow">
-            <p className="text-gray-500">
-              Open Requests
-            </p>
-
-            <h2 className="mt-3 text-4xl font-bold">
-              23
-            </h2>
-
-            <p className="mt-2 text-sm text-orange-600">
-              Need attention
-            </p>
-          </div>
-
-
-          <div className="rounded-2xl bg-white p-6 shadow">
-            <p className="text-gray-500">
-              Visitors Today
-            </p>
-
-            <h2 className="mt-3 text-4xl font-bold">
-              14
-            </h2>
-
-            <p className="mt-2 text-sm text-blue-600">
-              Security tracking
-            </p>
-          </div>
-
-        </div>
-
-
-        {/* Lower Sections */}
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
-
-          {/* Announcements */}
-          <div className="rounded-2xl bg-white p-6 shadow">
-
-            <h2 className="mb-4 text-xl font-bold">
-              Recent Announcements
-            </h2>
-
-            <div className="space-y-4">
-
-              <div className="rounded-lg bg-gray-50 p-4">
-                <h3 className="font-semibold">
-                  Estate Security Update
-                </h3>
-
-                <p className="text-sm text-gray-500">
-                  New visitor rules have been added.
-                </p>
-              </div>
-
-
-              <div className="rounded-lg bg-gray-50 p-4">
-                <h3 className="font-semibold">
-                  Community Meeting
-                </h3>
-
-                <p className="text-sm text-gray-500">
-                  Meeting scheduled for Saturday.
-                </p>
-              </div>
-
-            </div>
-
-          </div>
-
-
-          {/* Chart Placeholder */}
-          <div className="rounded-2xl bg-white p-6 shadow">
-
-            <h2 className="mb-4 text-xl font-bold">
-              Activity Overview
-            </h2>
-
-            <div className="flex h-56 items-center justify-center rounded-xl bg-gray-100">
-              <p className="text-gray-400">
-                Chart Placeholder
-              </p>
-            </div>
-
-          </div>
-
-        </div>
 
       </div>
-    </DashboardLayout>
+
+
+
+
+
+
+
+      <div className="grid md:grid-cols-4 gap-6">
+
+
+
+        {cards.map((card)=>{
+
+
+          const Icon = card.icon;
+
+
+
+          return (
+
+
+            <div
+
+              key={card.title}
+
+              className="
+              bg-white
+              rounded-xl
+              shadow
+              p-6
+              "
+
+            >
+
+
+              <div className="
+              flex
+              justify-between
+              items-center
+              ">
+
+
+                <div>
+
+                  <p className="text-gray-500">
+
+                    {card.title}
+
+                  </p>
+
+
+                  <h2 className="text-4xl font-bold mt-3">
+
+                    {card.value}
+
+                  </h2>
+
+
+                </div>
+
+
+
+                <div className="
+                bg-blue-100
+                text-blue-600
+                p-3
+                rounded-lg
+                ">
+
+                  <Icon size={28}/>
+
+                </div>
+
+
+
+              </div>
+
+
+
+            </div>
+
+
+          );
+
+
+        })}
+
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+      <div className="grid md:grid-cols-2 gap-6">
+
+
+
+        <div className="
+        bg-white
+        rounded-xl
+        shadow
+        p-6
+        ">
+
+
+          <h2 className="text-xl font-bold mb-5">
+
+            Estate Activity
+
+          </h2>
+
+
+
+          <div className="space-y-4">
+
+
+            <div className="flex justify-between">
+
+              <span>Marketplace</span>
+
+              <b>{stats.listings}</b>
+
+            </div>
+
+
+            <div className="flex justify-between">
+
+              <span>Visitors</span>
+
+              <b>{stats.visitors}</b>
+
+            </div>
+
+
+            <div className="flex justify-between">
+
+              <span>Residents</span>
+
+              <b>{stats.residents}</b>
+
+            </div>
+
+
+
+          </div>
+
+
+
+        </div>
+
+
+
+
+
+
+        <div className="
+        bg-white
+        rounded-xl
+        shadow
+        p-6
+        ">
+
+
+          <h2 className="text-xl font-bold mb-5">
+
+            Recent Updates
+
+          </h2>
+
+
+
+          <div className="space-y-4">
+
+
+            {activities.map((item,index)=>(
+
+
+              <p key={index} className="text-gray-600">
+
+                {item}
+
+              </p>
+
+
+            ))}
+
+
+
+          </div>
+
+
+
+        </div>
+
+
+
+
+
+      </div>
+
+
+
+
+    </div>
+
   );
+
 }
